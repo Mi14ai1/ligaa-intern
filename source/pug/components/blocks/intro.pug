@@ -1,8 +1,62 @@
+-
+  const cards = [
+    {
+      href: '#menu',
+      moveTo: '#menu',
+      title: 'Меню'
+    },
+    {
+      href: '#loader',
+      moveTo: '#loader',
+      title: 'Лоадер'
+    },
+    {
+      href: '#modal',
+      moveTo: '#modal',
+      title: 'Сборка<br>первого экрана'
+    },
+    {
+      href: '#modal',
+      moveTo: '#modal',
+      title: 'Появление блоков'
+    },
+    {
+      href: '#modal',
+      moveTo: '#modal',
+      title: 'Параллакс'
+    },
+    {
+      href: '#scroll-slider',
+      moveTo: '#Слайдер<br>по скроллу',
+      title: '#scroll-slider',
+      offset: '-1'
+    },
+  ]
 mixin intro()
-  .intro
+  section.intro(data-animate="intro" data-section-animation data-start="top top" data-end="bottom top")
+    .intro__sticky
+      .container
+        .intro__heading
+          //words lines splitting
+          h1.intro__title.title(data-splitting) Задачки<br>на прокачку
+          p.intro__description(data-splitting) Задачи на&nbsp;интерфейсную логику,<br>которые часто встречаются<br>на&nbsp;реальных проектах
+
+
+        .intro__cards
+          each card in cards
+            if card.offset
+              a.card-simple(href= card.href data-move-to= card.moveTo data-offset= card.offset)
+                h2.card-simle__title.title.title--h3!= card.title
+            else
+              a.card-simple(href= card.href data-move-to= card.moveTo)
+                h2.card-simle__title.title.title--h3!= card.title
+      .intro__bg
+        // <video src="video/background-wave.mp4" alt="waaaavee" autoplay="true" muted="true" loop="" playsinline=""></video>
+        video(src="video/background-wave.mp4" alt="waaaavee" autoplay="true" muted="true" loop="" playsinline="")
+
     //- вставлять блоки во внешний контейнер неверно
     //- все блоки содержат в себе container без доп класса tutorial__wrapper
-    .container
+    //.container
       //p(style="margin-top: 40px;") Текст&nbsp;с&nbsp;мнемониками
       //
       //p(style="margin-top: 40px;") Пример использования +img()
