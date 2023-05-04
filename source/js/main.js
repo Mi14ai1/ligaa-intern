@@ -6,36 +6,41 @@ import {uploadFile, uploadImageDrop} from './modules/input-file/init-upload';
 import {initHeaderModules} from './modules/header/index.js';
 import {initLocomotiveScroll} from './modules/scroll-smoother/init-locomotive.js';
 import {initScrollTrigger} from './modules/scroll-smoother/init-scroll-trigger.js';
+import {Loader} from './modules/loader.js';
 
 // ---------------------------------
 
 window.addEventListener('DOMContentLoaded', () => {
+  const preLoader = new Loader();
 
   // Utils
   // ---------------------------------
 
   iosVhFix();
+  initHeaderModules();
 
   // Modules
   // ---------------------------------
 
   // все скрипты должны быть в обработчике 'DOMContentLoaded', но не все в 'load'
   // в load следует добавить скрипты, не участвующие в работе первого экрана
+
   window.addEventListener('load', () => {
     initModals();
     uploadFile();
     uploadImageDrop();
-    initHeaderModules();
+    initLocomotiveScroll();
+    initScrollTrigger();
     const select = new CustomSelect();
     select.init();
     const form = new Form();
     window.form = form;
     form.init();
-
-    initLocomotiveScroll();
-    initScrollTrigger();
   });
 });
+
+// window.addEventListener('loaderOff', () => {
+// });
 
 // ---------------------------------
 

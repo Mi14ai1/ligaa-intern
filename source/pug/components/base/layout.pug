@@ -31,7 +31,7 @@ html(lang="ru")
 
     link(rel="stylesheet", href="css/style.min.css")
 
-  body
+  body(class = hasPreloader ? 'scroll-lock-ios' : '')
     +sprite()
     .wrapper(class=wrapperMods data-scroll-container)
       if (hasHeader)
@@ -41,6 +41,9 @@ html(lang="ru")
 
       if (hasFooter)
         +footer(footerMods)
+
+    if(hasPreloader)
+      +loader()
 
     block modals
 
