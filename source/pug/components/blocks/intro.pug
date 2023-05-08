@@ -33,16 +33,17 @@
     },
   ]
 mixin intro()
-  section.intro(data-animate="intro" data-section-animation data-start="top top" data-end="bottom top")
+  // <sections class="intro is-shown" data-animate="intro" data-section-animation="" data-start="top top" data-end="bottom top">
+  section.intro(data-animate="intro" data-section-animation="" data-start="top top" data-end="bottom top")
     .intro__sticky
-      .container
+      .container(data-animation-direction="to")
         .intro__heading
           //words lines splitting
           h1.intro__title.title(data-splitting) Задачки<br>на прокачку
           p.intro__description(data-splitting) Задачи на&nbsp;интерфейсную логику,<br>которые часто встречаются<br>на&nbsp;реальных проектах
 
-
-        .intro__cards
+        //<div class="intro__cards" data-animation="scale: 0.7" data-animation-direction="to" data-position="0" style="translate: none; rotate: none; scale: none; transform: translate3d(0px, 0px, 0px) scale(0.9533, 0.9533);">
+        .intro__cards(data-animation="scale: 0.7" data-animation-direction="to" data-position="0")
           each card in cards
             if card.offset
               a.card-simple(href= card.href data-move-to= card.moveTo data-offset= card.offset)
@@ -51,7 +52,6 @@ mixin intro()
               a.card-simple(href= card.href data-move-to= card.moveTo)
                 h2.card-simle__title.title.title--h3!= card.title
       .intro__bg
-        // <video src="video/background-wave.mp4" alt="waaaavee" autoplay="true" muted="true" loop="" playsinline=""></video>
         video(src="video/background-wave.mp4" alt="waaaavee" autoplay="true" muted="true" loop="" playsinline="")
 
     //- вставлять блоки во внешний контейнер неверно

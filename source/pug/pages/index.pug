@@ -9,11 +9,14 @@ block variables
   - const footerMods = ""
   - const currentUrl = "index.html" //- для остальных страниц пишем пустую строку или индекс активного headerLinks
   - const hasPreloader = true
+  - const sectionsData = indexSectionsContent
 
 block main
   main
     //- на странице запрещен "голый" код
     //- все блоки вставляются из папки pug/components/blocks
     +intro()
+    each sectionContent in sectionsData
+      +section(sectionContent)&attributes(sectionContent.attr)
 
 block modals

@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!--data-->
 <html lang="ru">
   <head>
     <title>ProjectName</title>
@@ -26,7 +27,7 @@
   </g>
 </symbol></svg>
     </div>
-    <div class="wrapper" data-scroll-container>
+    <div class="wrapper">
       <header class="header" data-fix-block>
         <div class="container">
           <div class="span header__logo">
@@ -56,15 +57,17 @@
         </nav>
       </header>
       <main>
-        <section class="intro" data-animate="intro" data-section-animation data-start="top top" data-end="bottom top">
+        <!-- <sections class="intro is-shown" data-animate="intro" data-section-animation="" data-start="top top" data-end="bottom top">-->
+        <section class="intro" data-animate="intro" data-section-animation="" data-start="top top" data-end="bottom top">
           <div class="intro__sticky">
-            <div class="container">
+            <div class="container" data-animation-direction="to">
               <div class="intro__heading">
                 <!--words lines splitting-->
                 <h1 class="intro__title title" data-splitting>Задачки<br>на прокачку</h1>
                 <p class="intro__description" data-splitting>Задачи на&nbsp;интерфейсную логику,<br>которые часто встречаются<br>на&nbsp;реальных проектах</p>
               </div>
-              <div class="intro__cards"><a class="card-simple" href="#menu" data-move-to="#menu">
+              <!--<div class="intro__cards" data-animation="scale: 0.7" data-animation-direction="to" data-position="0" style="translate: none; rotate: none; scale: none; transform: translate3d(0px, 0px, 0px) scale(0.9533, 0.9533);">-->
+              <div class="intro__cards" data-animation="scale: 0.7" data-animation-direction="to" data-position="0"><a class="card-simple" href="#menu" data-move-to="#menu">
                   <h2 class="card-simle__title title title--h3">Меню</h2></a><a class="card-simple" href="#loader" data-move-to="#loader">
                   <h2 class="card-simle__title title title--h3">Лоадер</h2></a><a class="card-simple" href="#modal" data-move-to="#modal">
                   <h2 class="card-simle__title title title--h3">Сборка<br>первого экрана</h2></a><a class="card-simple" href="#modal" data-move-to="#modal">
@@ -74,7 +77,6 @@
               </div>
             </div>
             <div class="intro__bg">
-              <!-- <video src="video/background-wave.mp4" alt="waaaavee" autoplay="true" muted="true" loop="" playsinline=""></video>-->
               <video src="video/background-wave.mp4" alt="waaaavee" autoplay="true" muted="true" loop="" playsinline=""></video>
             </div>
           </div>
@@ -85,6 +87,138 @@
           //p(style="margin-bottom: 40px;")
           //  +img("content", "placeholder", "png", 120, 120, "Пример")
           -->
+        </section>
+        <section class="section" id="menu">
+          <div class="container">
+            <div class="content-block">
+              <h2>Меню тз</h2>
+              <p><b>Анимация появления</b></p>
+              <p>При открытии: Сначала появляется меню, затем внутренний контент. Пункты внутри появляются с разной задержкой - эффект "лесенки"</p>
+              <p>При закрытии: Внутренний контент исчезает до закрытия меню, без задержки</p>
+              <p>Анимация меню на данном сайте реализована с помощью css (это база). Можете так же реализовать анимацию с помощью gsap</p>
+              <p><b>JS</b></p>
+              <p>Для блокировки скролла используется window.scrollLock</p>
+              <p>Должны быть реализованы функции или методы для открытия и закрытия меню, которые можно использовать в других модулях</p>
+            </div>
+          </div>
+        </section>
+        <section class="section" id="loader">
+          <div class="container">
+            <div class="content-block">
+              <h2>Лоадер тз</h2>
+              <p>Анимация лоадера произвольная, можно использовать css keyframes или gsap</p>
+              <p>После загрузки страницы мы всегда находимся вверху страницы (не должно быть видно скачка)</p>
+              <p>Скролл страницы заблокирован во время загрузки</p>
+            </div>
+          </div>
+        </section>
+        <section class="section" id="first-screen">
+          <div class="container">
+            <div class="content-block">
+              <h2>Сборка первого экрана тз</h2>
+              <p>Для анимации используйте неколько разных css свойств и небольшие задержки</p>
+              <p>Для построчной или посимвольной анимации текста используйте <a href="https://splitting.js.org" target="_blank">splitting.js</a> (пример: интро этого сайта)</p>
+            </div>
+          </div>
+        </section>
+        <section class="section" id="menu">
+          <div class="container">
+            <div class="content-block">
+              <h2>Появление блоков</h2>
+              <p>доскролили и вжух!</p>
+              <p>Можно делать через классы и высчитывать по скроллу getBoundingClientRect каждого блока, но гораздо проще использовать ScrollTrigger.batch()</p>
+              <div class="section__cards-container">
+                <div class="card-simple card-simple--dark card-simple--centered" data-animate="fade">
+                  <p class="title title--h3">fade</p>
+                </div>
+                <div class="card-simple card-simple--dark card-simple--centered" data-animate="fade">
+                  <p class="title title--h3">fade</p>
+                </div>
+                <div data-animate="fadeIn">
+                  <div class="card-simple card-simple--dark card-simple--centered" data-animate-item="">
+                    <p class="title title--h3">fade-in</p>
+                  </div>
+                </div>
+                <div data-animate="fadeIn">
+                  <div class="card-simple card-simple--dark card-simple--centered" data-animate-item="">
+                    <p class="title title--h3">fade-in</p>
+                  </div>
+                </div>
+                <div data-animate="fadeScale">
+                  <div class="card-simple card-simple--dark card-simple--centered" data-animate-item="">
+                    <p class="title title--h3">fade-scale</p>
+                  </div>
+                </div>
+                <div data-animate="fadeScale">
+                  <div class="card-simple card-simple--dark card-simple--centered" data-animate-item="">
+                    <p class="title title--h3">fade-scale</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="section" id="parallax">
+          <div class="container">
+            <div class="content-block">
+              <h2>Параллакс по скроллу</h2>
+              <p>Эффекты, которые постоянно срабатывают по скроллу</p>
+              <p>Скроллим скроллим и вжух вжух вжух!</p>
+              <div class="section__cards-container">
+                <div data-parallax="fadeScale">
+                  <div class="card-simple card-simple--dark card-simple--centered" data-animate="fade" data-parallax="item">
+                    <p class="title title--h3">fade-scale</p>
+                  </div>
+                </div>
+                <div data-parallax="fadeScale">
+                  <div class="card-simple card-simple--dark card-simple--centered" data-animate="fade" data-parallax="item">
+                    <p class="title title--h3">fade-scale</p>
+                  </div>
+                </div>
+                <div data-parallax="transformY">
+                  <div class="card-simple card-simple--dark card-simple--centered" data-parallax="item">
+                    <p class="title title--h3">fade-scale</p>
+                  </div>
+                </div>
+                <div data-parallax="transformY">
+                  <div class="card-simple card-simple--dark card-simple--centered" data-parallax="item">
+                    <p class="title title--h3">fade-scale</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="section" id="parallax">
+          <div class="container">
+            <div class="content-block">
+              <h2>Параллакс по скроллу</h2>
+              <p>Эффекты, которые постоянно срабатывают по скроллу</p>
+              <p>Скроллим скроллим и вжух вжух вжух!</p>
+              <div class="section__cards-container">
+                <div data-parallax="fadeScale">
+                  <div class="card-simple card-simple--dark card-simple--centered" data-parallax="item">
+                    <p class="title title--h3">fade-scale</p>
+                  </div>
+                </div>
+                <div data-parallax="fadeScale">
+                  <div class="card-simple card-simple--dark card-simple--centered" data-parallax="item">
+                    <p class="title title--h3">fade-scale</p>
+                  </div>
+                </div>
+                <div data-parallax="transformY">
+                  <div class="card-simple card-simple--dark card-simple--centered" data-parallax="item">
+                    <p class="title title--h3">fade-scale</p>
+                  </div>
+                </div>
+                <div data-parallax="transformY">
+                  <div class="card-simple card-simple--dark card-simple--centered" data-parallax="item">
+                    <p class="title title--h3">fade-scale</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </section>
       </main>
       <footer class="footer">
