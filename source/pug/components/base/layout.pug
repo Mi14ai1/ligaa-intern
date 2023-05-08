@@ -33,7 +33,7 @@ html(lang="ru")
 
   body(class = hasPreloader ? 'scroll-lock-ios' : '')
     +sprite()
-    .wrapper(class=wrapperMods data-scroll-container)
+    .wrapper(class=wrapperMods)
       if (hasHeader)
         +header(headerMods, currentUrl)
 

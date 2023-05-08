@@ -1,0 +1,20 @@
+mixin section(data)
+  section.section&attributes(attributes)
+    .container
+      .content-block
+        h2!= data.title
+        if data.paragraphs
+          each paragraph in data.paragraphs
+            p!= paragraph
+        if data.blocks
+          .section__cards-container
+            each part in data.blocks
+              if part.parent
+                div&attributes(part.parent)
+                  div&attributes(part.mods)
+                    p.title.title--h3= part.name
+              else
+                div&attributes(part.mods)
+                  p.title.title--h3= part.name
+
+        block
