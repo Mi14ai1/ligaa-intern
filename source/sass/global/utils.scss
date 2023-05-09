@@ -18,12 +18,10 @@
 }
 
 .rouble {
-  /* stylelint-disable */
-  font-weight: 400 !important;
-  /* stylelint-enable */
   font-family: $ff-rouble;
   /* stylelint-disable */
   text-transform: lowercase !important;
+  font-weight: 400 !important;
   /* stylelint-enable */
 }
 
@@ -70,4 +68,12 @@
 
 .js-focus-visible :focus:not(.focus-visible) {
   outline: none;
+}
+
+.mt-header {
+  margin-top: var(--header-height);
+}
+
+[data-parallax] {
+  transform: translate3d(0, 0, 0);
 }

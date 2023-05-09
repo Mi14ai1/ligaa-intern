@@ -5,7 +5,10 @@ import {initParallaxComponents} from './parallax.js';
 
 export const initAnimationModule = () => {
   const sliderContainer = document.querySelector('[data-scroll-slider="parent"]');
-  new ScrollSlider(sliderContainer);
+  const scrollSlider = new ScrollSlider(sliderContainer);
+
+  console.log(scrollSlider);
+
   generateTimeline();
   initParallaxComponents();
 };
