@@ -1,0 +1,34 @@
+-
+  const slides = [
+    {
+      title: 'Scroll Slider',
+      description: 'переключение полноэкранных слайдов по скроллу',
+      url: 'background-image: url(img/svg/architect-bg.svg);',
+    },
+    {
+      title: 'Scroll Slider',
+      description: 'переключение полноэкранных слайдов по скроллу',
+      url: 'background-image: url(img/svg/squares-bg.svg);',
+    },
+    {
+      title: 'gsap scrollTrigger',
+      description: 'без getBoundingClientRect<br>ScrollTrigger делает всю рутину за нас',
+      url: 'background-image: url(img/svg/plus-bg.svg);',
+    },
+    {
+      title: 'ios friendly???',
+      description: 'не забывайте добавлять вокруг transform: translate3d(0, 0, 0);',
+      url: 'background-image: url(img/svg/graph-paper-bg.svg);',
+    },
+  ]
+mixin scroll-slider()
+  .scroll-slider(data-scroll-slider="parent")
+    section.scroll-slider__sticky#scroll-slider(data-scroll-slider="sticky")
+      each slide, i in slides
+        .scroll-slider__slide(data-scroll-slider="slide" class= i === 0 ? 'is-active' : '')
+          .container
+            .content-block.content-block--centered
+              h2=  slide.title
+              p!= slide.description
+          .scroll-slider__bg(style= slide.url)
+
