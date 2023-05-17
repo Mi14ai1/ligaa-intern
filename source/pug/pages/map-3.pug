@@ -1,0 +1,24 @@
+extends ../components/base/layout
+
+block variables
+  - const title = "ProjectName" //- на страницах кроме главной используйте О нас — ProjectName
+  - const wrapperMods = ""
+  - const hasHeader = true
+  - const headerMods = ""
+  - const currentUrl = "map-3.html" //- для остальных страниц пишем пустую строку или индекс активного headerLinks
+  - const hasMap = true
+
+block main
+  main
+    section.ya-map
+      .container
+        h1.ya-map__title.title Задание по карте №3
+        h2 Техническое задание
+        p Реализовать карту через API Яндекс карт
+        p Настроить кастомный пин на карте так, что бы его стрелочка четко указывала на центр координат, которые вы можете придумать сами
+        p На десктопной версии при скролле колесиком мышки, карта не должна масштабироваться.
+        .ya-map__inner
+          .ya-map__map(data-map="map-3" data-center="59.968513, 30.317772" data-zoom="15" data-markers-url="data/maps-markers.json")
+        + map-filter()
+
+block modals

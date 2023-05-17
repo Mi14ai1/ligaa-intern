@@ -1,4 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><symbol id="icon-all-object" viewBox="0 0 50 50">
+<!DOCTYPE html>
+<!--data-->
+<html lang="ru">
+  <head>
+    <title>ProjectName</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="ProjectName — описание">
+    <link rel="stylesheet" href="css/style.min.css">
+  </head>
+  <body>
+    <div class="visually-hidden"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><symbol id="icon-all-object" viewBox="0 0 50 50">
   <g fill="none">
     <path d="M25.0018 30.89L14.015 25.0022L18.5049 22.5937L16.4979 21.5181L10.001 25.0022L25.0018 33.0389L40.0005 25.0022L33.5036 21.5181L31.5009 22.5937L35.9887 25.0022L25.0018 30.89Z" fill="#373737"/>
       <path d="M25.0018 37.8512L14.015 31.9633L18.5049 29.5549L16.4979 28.4792L10.001 31.9633L25.0018 40.0001L40.0005 31.9633L33.5036 28.4792L31.5009 29.5549L35.9887 31.9633L25.0018 37.8512Z" fill="#373737"/>
@@ -72,3 +84,117 @@
     <path d="M337.981 30.267V52H329.24V14.9091H337.595V21.2116H338.03C338.883 19.1349 340.243 17.4848 342.111 16.2614C343.994 15.0379 346.32 14.4261 349.089 14.4261C351.649 14.4261 353.879 14.9735 355.778 16.0682C357.694 17.1629 359.175 18.7486 360.221 20.8253C361.284 22.902 361.807 25.4214 361.791 28.3835V52H353.05V29.7358C353.05 27.2566 352.406 25.3167 351.118 23.9162C349.846 22.5156 348.083 21.8153 345.829 21.8153C344.3 21.8153 342.94 22.1534 341.748 22.8295C340.573 23.4896 339.648 24.4474 338.971 25.7031C338.311 26.9588 337.981 28.4801 337.981 30.267Z" fill="currentColor"/>
   </g>
 </symbol></svg>
+    </div>
+    <div class="wrapper">
+      <header class="header" data-fix-block>
+        <div class="container"><a class="header__logo" href="index.html" aria-label="Переход на главную">
+            <svg width="362" height="67" aria-hidden="true">
+              <use xlink:href="#logo"></use>
+            </svg></a>
+          <button class="header__toggle" data-menu="toggle" type="button" aria-label="Переключатель отображения меню"></button>
+        </div>
+        <nav class="main-nav" data-menu="nav" data-fix-block>
+          <div class="container">
+            <div class="main-nav__wrapper">
+              <ul class="main-nav__list">
+                <li class="main-nav__item"><a class="main-nav__link" href="index.html"><span>Анимация</span></a>
+                </li>
+                <li class="main-nav__item"><a class="main-nav__link" href="map-1.html"><span>Карта 1</span></a>
+                </li>
+                <li class="main-nav__item"><a class="main-nav__link" href="map-2.html"><span>Карта 2</span></a>
+                </li>
+                <li class="main-nav__item"><span class="main-nav__link is-active">Карта 3</span>
+                </li>
+                <li class="main-nav__item"><a class="main-nav__link" href="map-4.html"><span>Карта 4</span></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </header>
+      <main>
+        <section class="ya-map">
+          <div class="container">
+            <h1 class="ya-map__title title">Задание по карте №3</h1>
+            <h2>Техническое задание</h2>
+            <p>Реализовать карту через API Яндекс карт</p>
+            <p>Настроить кастомный пин на карте так, что бы его стрелочка четко указывала на центр координат, которые вы можете придумать сами</p>
+            <p>На десктопной версии при скролле колесиком мышки, карта не должна масштабироваться.</p>
+            <div class="ya-map__inner">
+              <div class="ya-map__map" data-map="map-3" data-center="59.968513, 30.317772" data-zoom="15" data-markers-url="data/maps-markers.json"></div>
+            </div>
+            <div class="map-filter">
+              <form class="map-filter__form" action="#" novalidate>
+                <div class="map-filter__list">
+                  <div class="map-filter__item">
+                    <input class="visually-hidden" type="radio" name="filterList" value="all" id="filterAll" checked>
+                    <label class="map-filter__label" for="filterAll">
+                      <div class="map-filter__icon">
+                        <svg width="50" height="50" aria-hidden="true">
+                          <use xlink:href="#icon-all-object"></use>
+                        </svg>
+                      </div><span>Все объекты</span>
+                    </label>
+                  </div>
+                  <div class="map-filter__item">
+                    <input class="visually-hidden" type="radio" name="filterList" value="park" id="filterPark">
+                    <label class="map-filter__label" for="filterPark">
+                      <div class="map-filter__icon">
+                        <svg width="50" height="50" aria-hidden="true">
+                          <use xlink:href="#icon-park"></use>
+                        </svg>
+                      </div><span>Парки</span>
+                    </label>
+                  </div>
+                  <div class="map-filter__item">
+                    <input class="visually-hidden" type="radio" name="filterList" value="museum" id="filterMuseum">
+                    <label class="map-filter__label" for="filterMuseum">
+                      <div class="map-filter__icon">
+                        <svg width="50" height="50" aria-hidden="true">
+                          <use xlink:href="#icon-museum"></use>
+                        </svg>
+                      </div><span>Музеи</span>
+                    </label>
+                  </div>
+                  <div class="map-filter__item">
+                    <input class="visually-hidden" type="radio" name="filterList" value="children" id="filterChildren">
+                    <label class="map-filter__label" for="filterChildren">
+                      <div class="map-filter__icon">
+                        <svg width="50" height="50" aria-hidden="true">
+                          <use xlink:href="#icon-children"></use>
+                        </svg>
+                      </div><span>Дет. сады</span>
+                    </label>
+                  </div>
+                  <div class="map-filter__item">
+                    <input class="visually-hidden" type="radio" name="filterList" value="hospital" id="filterHospital">
+                    <label class="map-filter__label" for="filterHospital">
+                      <div class="map-filter__icon">
+                        <svg width="50" height="50" aria-hidden="true">
+                          <use xlink:href="#icon-hospital"></use>
+                        </svg>
+                      </div><span>Поликлиники</span>
+                    </label>
+                  </div>
+                  <div class="map-filter__item">
+                    <input class="visually-hidden" type="radio" name="filterList" value="school" id="filterSchool">
+                    <label class="map-filter__label" for="filterSchool">
+                      <div class="map-filter__icon">
+                        <svg width="50" height="50" aria-hidden="true">
+                          <use xlink:href="#icon-school"></use>
+                        </svg>
+                      </div><span>Школы</span>
+                    </label>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=9e4d2437-f61b-4c8d-bf5d-328c4e02f4e9&amp;lang=ru_RU"></script>
+    <script src="js/vendor.min.js"></script>
+    <script src="js/main.min.js"></script>
+  </body>
+</html>

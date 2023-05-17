@@ -7,7 +7,7 @@ import './utils/observers';
 import {initAnimationModule} from './modules/animation';
 import {Loader} from './modules/loader';
 import {initScrollTo} from './modules/init-move-to.js';
-//import {initMaps} from './modules/maps/init-maps.js';
+import {initMaps} from './modules/maps/init-maps.js';
 
 // ---------------------------------
 
@@ -32,7 +32,7 @@ window.addEventListener('DOMContentLoaded', () => {
     const form = new Form();
     window.form = form;
     form.init();
-//    initMaps();
+    initMaps();
     initScrollTo();
   });
 
