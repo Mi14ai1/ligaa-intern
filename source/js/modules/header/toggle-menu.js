@@ -1,37 +1,36 @@
 import {clickObserver} from '../../utils/observers.js';
+import {keyObserver} from "../../utils/observers.js";
 
 let isMenuOpen = false;
 
-const closeMenu = () => {
-  const header = document.querySelector('.header');
-  const menuToggle = document.querySelector('[data-menu="toggle"]');
-  const menuNav = document.querySelector('[data-menu="nav"]');
+const menuElements = {
+  header: document.querySelector('.header'),
+  menuToggle: document.querySelector('[data-menu="toggle"]'),
+  menuNav: document.querySelector('[data-menu="nav"]'),
+};
 
-  menuNav.classList.remove('is-active');
-  menuToggle.classList.remove('is-active');
-  header.classList.remove('menu-opened');
+const closeMenu = () => {
+  menuElements.menuNav.classList.remove('is-active');
+  menuElements.menuToggle.classList.remove('is-active');
+  menuElements.header.classList.remove('menu-opened');
   window.scrollLock.enableScrolling();
   isMenuOpen = false;
+  keyObserver.unsubscribe(escPressHandler);
 };
 
 const openMenu = () => {
-  const header = document.querySelector('.header');
-  const menuToggle = document.querySelector('[data-menu="toggle"]');
-  const menuNav = document.querySelector('[data-menu="nav"]');
-
-  menuNav.classList.add('is-active');
-  menuToggle.classList.add('is-active');
-  header.classList.add('menu-opened');
+  menuElements.menuNav.classList.add('is-active');
+  menuElements.menuToggle.classList.add('is-active');
+  menuElements.header.classList.add('menu-opened');
   window.scrollLock.disableScrolling();
   isMenuOpen = true;
+  keyObserver.subscribe(escPressHandler);
 };
 
 const toggleMenu = (evt) => {
   const target = evt.target;
   const menuToggle = target.closest('[data-menu="toggle"]');
-  const menuNav = document.querySelector('[data-menu="nav"]');
-
-  if (!menuToggle || !menuNav) {
+  if (!menuToggle || !menuElements.menuNav) {
     return;
   }
 
@@ -42,14 +41,16 @@ const toggleMenu = (evt) => {
   }
 };
 
-export const initToggleMenu = () => {
-  const menuNav = document.querySelector('[data-menu="nav"]');
-  const menuToggle = document.querySelector('[data-menu="toggle"]');
+const escPressHandler = (evt) => {
+  if (evt.key === 'Escape') {
+    closeMenu();
+  }
+};
 
-  if (!menuNav || !menuToggle) {
+export const initToggleMenu = () => {
+  if (!menuElements.menuNav || !menuElements.menuToggle) {
     return;
   }
-
   clickObserver.subscribe(toggleMenu);
 };
 
