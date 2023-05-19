@@ -1,27 +1,21 @@
 import {ScrollToPlugin} from './../vendor/gsap/scroll-to-plugin';
 import {pageScroller} from '../utils/page-scroller.js';
-
-const header = document.querySelector('.header');
-
-const setOffset = (offset) => {
-  if (offset === 'header') {
-    if (!header) {
-      return 0; // если нет шапки на странице, то отступ = 0
-    }
-    return header.getBoundingClientRect().height; // отступ = высота шапки
-  }
-
-  return offset;
-};
+import {clickObserver} from "../utils/observers.js";
 
 const scrollToHandler = (e) => {
-  e.preventDefault();
   const btn = e.target.closest('[data-move-to]');
+
+  if (!btn) {
+    return;
+  }
+
+  e.preventDefault();
+
   const target = document.querySelector(btn.dataset.moveTo);
 
   const options = {
     duration: Math.abs(btn.getBoundingClientRect().top - target.getBoundingClientRect().top) / (window.innerHeight * 1.5),
-    offset: btn.dataset.offset ? setOffset(btn.dataset.offset) : 0,
+    offset: 0,
   };
 
 
@@ -36,9 +30,9 @@ const scrollToHandler = (e) => {
 
 export const initScrollTo = () => {
   gsap.registerPlugin(ScrollToPlugin);
-  const scrollToButtons = document.querySelectorAll('[data-move-to]');
 
-  scrollToButtons.forEach((btn) => {
-    btn.addEventListener('click', scrollToHandler);
-  });
+  if (!document.querySelector('[data-move-to]')) {
+    return;
+  }
+  clickObserver.subscribe(scrollToHandler);
 };

@@ -12,6 +12,8 @@ export class Loader {
     this.scrollLock = new ScrollLock();
     this.event = new Event('loaderOff');
 
+    // привязка контекста к экземпляру класса
+
     this.off = this.off.bind(this);
     this.hide = this.hide.bind(this);
 
@@ -19,9 +21,9 @@ export class Loader {
   }
 
   hide() {
-    // this.scrollLock.enableScrolling();
     this.hideTimeline = gsap.timeline();
-    this.hideTimeline = gsap.fromTo(this.container, {
+
+    this.hideTimeline.fromTo(this.container, {
       clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 110%)',
     }, {
       duration: 0.6,
@@ -31,8 +33,6 @@ export class Loader {
   }
 
   on() {
-    // this.scrollLock.disableScrolling();
-    document.querySelector('body').classList.add('scroll-lock-ios');
     window.addEventListener('load', this.hide);
   }
 
