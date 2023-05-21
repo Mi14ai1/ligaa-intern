@@ -48,6 +48,8 @@ const generateTimeline = () => {
       return aIndex - bIndex;
     });
 
+    console.log(window.gsap.timeline());
+
     const tl = window.gsap.timeline({
       scrollTrigger: {
         scroller: vpTouch.matches ? '.wrapper' : 'body',
@@ -55,10 +57,13 @@ const generateTimeline = () => {
         start: section.dataset.start,
         end: section.hasAttribute('data-end') ? section.dataset.end : () => `+=${getMaxWidth(blocks)}`,
         scrub: section.dataset.scrub ? Number(section.dataset.scrub) : 1,
-        pin: section.hasAttribute('data-pin') ? true : false,
-        pinSpacing: section.hasAttribute('data-pin-spacing') ? true : false,
+        pin: section.hasAttribute('data-pin') ? true : false, // в демонстрации не применяется
+        pinSpacing: section.hasAttribute('data-pin-spacing') ? true : false, // в демонстрации не применяется
       }
     });
+
+    console.log(tl);
+
 
     blocks.forEach(block => {
       const obj = getAnimationObject(block);
