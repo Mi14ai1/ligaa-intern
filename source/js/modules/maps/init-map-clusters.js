@@ -35,7 +35,7 @@ const initClustersPins = (mapBlock, ymap) => {
     gridSize: 12800,
     preset: 'islands#brownClusterIcons',
     hasBalloon: true,
-    hasHint: true,
+    // hasHint: true, позволяет выводить подсказки при наведении на пин
     clusterDisableClickZoom: true,
 
 
@@ -46,7 +46,7 @@ const initClustersPins = (mapBlock, ymap) => {
     clusterBalloonPanelMaxMapArea: 0,
     clusterBalloonContentLayoutWidth: 300,
     clusterBalloonContentLayoutHeight: 180,
-    clusterBalloonPagerSize: 5,
+    clusterBalloonPagerSize: 5, // максимум слайдов
     clusterBalloonPagerType: 'marker',
   });
 
