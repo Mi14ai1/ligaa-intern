@@ -1,4 +1,5 @@
 // import {scroll} from '../animation/init-loco-scroll';
+
 const mediaPoint = matchMedia('(max-width: 767px)');
 
 const initZoomMap = (ymap) => {

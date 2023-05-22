@@ -11,12 +11,10 @@ const initMapFilter = (mapBlock) => {
     }
     const arr = [];
     allPins.each(function (pm) {
-      if (pm.options.get('placemarkType') === 'object') {
-        return;
-      }
+      console.log(pm.balloon.isOpen());
       if (pm.options.get('placemarkType') === element) {
         pm.options.set('visible', true);
-        arr.push(pm.balloon.isOpen());
+        arr.push(pm.balloon.isOpen()); // проверка на открытый попап
       } else {
         pm.options.set('visible', false);
       }
@@ -24,8 +22,9 @@ const initMapFilter = (mapBlock) => {
         pm.options.set('visible', true);
       }
     });
+    console.log(arr.includes(true));
     if (!arr.includes(true)) {
-      mapBlock.balloon.close();
+      mapBlock.balloon.close(); // если есть открытый попап не соответствующий фильтру то закрывает его
     }
   };
 

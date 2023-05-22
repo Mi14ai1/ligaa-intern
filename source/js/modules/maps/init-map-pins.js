@@ -7,6 +7,8 @@ const initCategoryPins = (mapBlock, ymap) => {
   const renderPins = (data) => {
     // Создаём макет содержимого.
     // eslint-disable-next-line no-undef
+    // data-map-marker="$[properties.category]"> обращаемся к свойству category в JSON
+
     let MyIconContentLayout = ymaps.templateLayoutFactory.createClass(
         `<div class="placemark" data-placemark tabindex="0" data-map-marker="$[properties.category]">
             <div class="placemark__inner">
@@ -126,8 +128,6 @@ const initCategoryPins = (mapBlock, ymap) => {
     const mapMarkers = data.mapMarkers;
     renderPins(mapMarkers);
   };
-
-  console.log(requestURL);
 
   fetchApi(requestURL, onSuccess);
 };
