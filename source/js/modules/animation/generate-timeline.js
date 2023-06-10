@@ -3,6 +3,7 @@
 // создает анимации по скроллу с помощью дата атрибута
 const vpTouch = window.matchMedia('(pointer: coarse)');
 
+//функция возвращающая сумму ширин переданных блоков
 const getMaxWidth = (blocks) => {
   let maxWidth = 0;
   blocks.forEach((block) => {
@@ -11,6 +12,7 @@ const getMaxWidth = (blocks) => {
   return maxWidth
 };
 
+//функция возвращает объект, содержащий, ключ значение, работает только со строками которые соответствуют структуре объекта
 const getObjectFromString = (str) => {
   if (str.indexOf('clipPath') !== -1) {
     const arr = str.split(':');
@@ -28,43 +30,41 @@ const getObjectFromString = (str) => {
     }, {});
 };
 
+
+//фукция возвращает объект с конфигурацией анимации
 function getAnimationObject(el) {
   const obj = {};
-  obj.direction = el.dataset.animationDirection;
-  obj.duration = +el.dataset.animationDuration || 1;
-  obj.delay = +el.dataset.animationDelay || 0;
-  obj.position = el.dataset.position;
-  obj.element = el;
-  obj.animation = getObjectFromString(el.dataset.animation.toString());
+  obj.direction = el.dataset.animationDirection;                        //направление
+  obj.duration = +el.dataset.animationDuration || 1;                    //продолжительность
+  obj.delay = +el.dataset.animationDelay || 0;                          //задержка
+  obj.position = el.dataset.position;                                   //позиция
+  obj.element = el;                                                     //анимируемый элемент
+  obj.animation = getObjectFromString(el.dataset.animation.toString()); //настройка анимация из дата-атрибута
   return obj;
 }
 
+//основная функция данного блока
 const generateTimeline = () => {
-  const sections = document.querySelectorAll('[data-section-animation]')
-  sections.forEach((section) => {
-    const blocks = gsap.utils.toArray(section.querySelectorAll("[data-animation]")).sort((a, b) => {
+  const sections = document.querySelectorAll('[data-section-animation]')                              //получаем анимируемые секции
+  sections.forEach((section) => {                                                                         //основной цикл функции
+    const blocks = gsap.utils.toArray(section.querySelectorAll("[data-animation]")).sort((a, b) => {     //сортируем секции по индексу
       const aIndex = +a.dataset.index || 1;
       const bIndex = +b.dataset.index || 1;
       return aIndex - bIndex;
     });
 
-    console.log(window.gsap.timeline());
-
-    const tl = window.gsap.timeline({
-      scrollTrigger: {
-        scroller: vpTouch.matches ? '.wrapper' : 'body',
-        trigger: section,
-        start: section.dataset.start,
-        end: section.hasAttribute('data-end') ? section.dataset.end : () => `+=${getMaxWidth(blocks)}`,
-        scrub: section.dataset.scrub ? Number(section.dataset.scrub) : 1,
-        pin: section.hasAttribute('data-pin') ? true : false, // в демонстрации не применяется
-        pinSpacing: section.hasAttribute('data-pin-spacing') ? true : false, // в демонстрации не применяется
+    const tl = window.gsap.timeline({                                                                                                //создаем gsap таймлайн
+      scrollTrigger: {                                                                                                               //конфигурируем скроллтригер
+        scroller: vpTouch.matches ? '.wrapper' : 'body',                                                                             //определяем обертку для скролла в зависимости от устройства(тач не тач)
+        trigger: section,                                                                                                            //привязываем тригер к секции
+        start: section.dataset.start,                                                                                                //начало анимации
+        end: section.hasAttribute('data-end') ? section.dataset.end : () => `+=${getMaxWidth(blocks)}`,           //конец анимации
+        scrub: section.dataset.scrub ? Number(section.dataset.scrub) : 1,                                                            //параметр отвечающий за анимацию во время прокрутки страницы (если true, то анимация будет проигрываться в соответствии с прогрессом прокрутки)
+        pin: section.hasAttribute('data-pin') ? true : false,                                                            // в демонстрации не применяется
+        pinSpacing: section.hasAttribute('data-pin-spacing') ? true : false,                                             // в демонстрации не применяется
       }
     });
-
-    console.log(tl);
-
-
+//накидываем параметры анимации из дата-атрибута
     blocks.forEach(block => {
       const obj = getAnimationObject(block);
       if (obj.position) {
