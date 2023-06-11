@@ -2,6 +2,8 @@ let pinSize;
 let offsetPin;
 let pinContentLayout;
 
+
+// темплейт дефолтного пина
 const renderDefaultPin = () => {
   pinSize = [90, 108];
   offsetPin = [-45, -120];
@@ -16,6 +18,7 @@ const renderDefaultPin = () => {
   `;
 };
 
+// темплейт маленького пина
 const renderSmallPin = () => {
   pinSize = [50, 60];
   offsetPin = [-25, -75];
@@ -33,6 +36,7 @@ const renderSmallPin = () => {
 const initMapPin = (mapBlock, ymap, pin) => {
   const placeCords = mapBlock.dataset.center.split(',');
 
+  // определяем какой пин отображать
   switch (pin) {
     case 'small':
       renderSmallPin();
@@ -44,6 +48,7 @@ const initMapPin = (mapBlock, ymap, pin) => {
 
   // Блок с меткой
   // eslint-disable-next-line no-undef
+  // добавляем в templateLayoutFactory наши шаблоны
   const MyPlacemarkContentLayout = window.ymaps.templateLayoutFactory.createClass(pinContentLayout);
 
   // eslint-disable-next-line no-undef
@@ -62,6 +67,7 @@ const initMapPin = (mapBlock, ymap, pin) => {
     zIndex: 700,
   });
 
+  // теперь результаты добавляем на карту
   ymap.geoObjects.add(myPlacemark);
 };
 

@@ -1,12 +1,16 @@
 const initClustersPins = (mapBlock, ymap) => {
+  // массив под кластер
   const pinsArray = [];
+
   ymap.geoObjects.each(function (geoObject) {
     const pinType = geoObject.options.get('placemarkType');
     if (pinType !== 'mainPin') {
+      // групируем пины
       pinsArray.push(geoObject);
     }
   });
 
+  // темплейт всплывашки кластера
   const customItemContentLayout = ymaps.templateLayoutFactory.createClass(
       `<div class="cluster-balloon">
           <div class="cluster-balloon__image">
@@ -31,6 +35,7 @@ const initClustersPins = (mapBlock, ymap) => {
         </div>`
   );
 
+  // конфигурируем кластер
   const clusterer = new ymaps.Clusterer({
     gridSize: 12800,
     preset: 'islands#brownClusterIcons',
@@ -50,9 +55,12 @@ const initClustersPins = (mapBlock, ymap) => {
     clusterBalloonPagerType: 'marker',
   });
 
+  // добавляем в кластер пины из массива
   clusterer.add(pinsArray);
+  //добавляем кластер на карту
   ymap.geoObjects.add(clusterer);
 
+  // задаем зависимость кластеризации от зума
   ymap.setBounds(clusterer.getBounds(), {
     checkZoomRange: true,
   });

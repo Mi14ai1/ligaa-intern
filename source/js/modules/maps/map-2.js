@@ -1,6 +1,7 @@
 import {initMapPin} from './init-map-pin.js';
 import {initCategoryPins} from './init-map-pins.js';
 
+//настройка карты (описание аналогично, описанию первой карты)
 const initMap2 = (mapBlock) => {
   const center = mapBlock.dataset.center.split(', ').map((str) => +str);
   const zoom = +mapBlock.dataset.zoom;

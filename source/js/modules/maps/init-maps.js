@@ -3,6 +3,7 @@ import {initMap2} from './map-2.js';
 import {initMap3} from './map-3.js';
 import {initMap4} from './map-4.js';
 
+//дефолтная конфигурация карты(если не будут передан особый параметр из дата-атрибута data-map)
 const initDefaultMap = (mapBlock) => {
   // eslint-disable-next-line
   window.ymaps.ready(() => {
@@ -18,6 +19,7 @@ const initDefaultMap = (mapBlock) => {
   });
 };
 
+//запускает инициализацию карты в соответствии с параметром из дата-атрибута data-map
 const initSetupMap = (mapId, mapBlock) => {
   switch (mapId) {
     case 'map-4':

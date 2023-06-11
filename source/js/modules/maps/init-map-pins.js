@@ -6,9 +6,9 @@ const initCategoryPins = (mapBlock, ymap) => {
 
   const renderPins = (data) => {
     // Создаём макет содержимого.
-    // eslint-disable-next-line no-undef
     // data-map-marker="$[properties.category]"> обращаемся к свойству category в JSON
-
+    // eslint-disable-next-line no-undef
+    // темплейт пина
     let MyIconContentLayout = ymaps.templateLayoutFactory.createClass(
         `<div class="placemark" data-placemark tabindex="0" data-map-marker="$[properties.category]">
             <div class="placemark__inner">
@@ -22,11 +22,13 @@ const initCategoryPins = (mapBlock, ymap) => {
     );
 
     // eslint-disable-next-line no-undef
+    // темплейт сообщения
     let MyBalloonLayout = ymaps.templateLayoutFactory.createClass(
         `<div class="placemark-balloon">
           $[[options.contentLayout]]
         </div>`
         , {
+          // метод возвращающий результат шаблонизации
           build() {
             this.constructor.superclass.build.call(this);
             this._$parent = this.getParentElement();
@@ -45,6 +47,7 @@ const initCategoryPins = (mapBlock, ymap) => {
         });
 
     // eslint-disable-next-line no-undef
+    // темплейт всплывашки
     let MyBalloonContentLayout = ymaps.templateLayoutFactory.createClass(
         `<div class="placemark-balloon__inner">
           {% if properties.imagePath %}
@@ -125,10 +128,12 @@ const initCategoryPins = (mapBlock, ymap) => {
   };
 
   const onSuccess = (data) => {
+    // получаем маркеры с параметрами из json
     const mapMarkers = data.mapMarkers;
     renderPins(mapMarkers);
   };
 
+  // запускаем фетч
   fetchApi(requestURL, onSuccess);
 };
 
