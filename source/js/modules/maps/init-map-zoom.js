@@ -2,6 +2,7 @@
 
 const mediaPoint = matchMedia('(max-width: 767px)');
 
+//функция инициализации управления зумом на карте
 const initZoomMap = (ymap) => {
   const messageBlock = document.querySelector('.ya-map__message');
 
@@ -19,10 +20,12 @@ const initZoomMap = (ymap) => {
   const showMessageBlock = () => {
     messageBlock.classList.add('is-active');
     isCtrlMessageVisible = true;
-    clearTimeout(timer);
+    clearTimeout(timer); // сбрасываем таймер(чтобы таймеры не стакались)
+    // убираем сообщение по таймеру
     timer = setTimeout(hiddenMessageBlock, TIMEOUT);
   };
 
+  // функция, скрывающая сообщение о зуме
   const hiddenMessageBlock = () => {
     if (isCtrlMessageVisible) {
       messageBlock.classList.remove('is-active');
@@ -30,10 +33,14 @@ const initZoomMap = (ymap) => {
     }
   };
 
+
+  // хендлер нажатия на кнопку мыши
   const hiddenMessageBlockOnMousedown = () => {
     hiddenMessageBlock();
   };
 
+
+  // хендлер нажатия на кнопку контрол
   const enableScrollMapZoomOnKeydown = (evt) => {
     if (evt.key === CTRL_KEY && !isCtrlKeyDown) {
       isCtrlKeyDown = true;
@@ -43,6 +50,7 @@ const initZoomMap = (ymap) => {
     }
   };
 
+  // хенделер отжатия кнопки контрол
   const disableScrollMapZoomOnKeyup = (evt) => {
     if (evt.key === CTRL_KEY) {
       isCtrlKeyDown = false;
@@ -51,10 +59,13 @@ const initZoomMap = (ymap) => {
     }
   };
 
+  // хендлер колеса мыши
   const onMapWheel = () => {
     if (!isCtrlKeyDown) {
+      // если не нажат контрол показываем сообщение, с предупреждением
       showMessageBlock();
     } else {
+      // если нажат контрол скрываем сообщение, с предупреждением
       hiddenMessageBlock();
     }
   };
@@ -65,12 +76,14 @@ const initZoomMap = (ymap) => {
       document.addEventListener('keyup', disableScrollMapZoomOnKeyup);
       messageBlock.addEventListener('mousedown', hiddenMessageBlockOnMousedown);
       messageBlock.addEventListener('wheel', onMapWheel);
+      // добавляем событие колеса мыши (включаем зум)
       ymap.events.add('wheel', onMapWheel);
     } else {
       document.removeEventListener('keydown', enableScrollMapZoomOnKeydown);
       document.removeEventListener('keyup', disableScrollMapZoomOnKeyup);
       messageBlock.removeEventListener('mousedown', hiddenMessageBlockOnMousedown);
       messageBlock.removeEventListener('wheel', onMapWheel);
+      // удаляем событие колеса мыши (отключаем зум)
       ymap.events.remove('wheel', onMapWheel);
     }
   };

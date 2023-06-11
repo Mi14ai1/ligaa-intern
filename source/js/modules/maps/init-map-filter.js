@@ -2,16 +2,21 @@ const initMapFilter = (mapBlock) => {
   const list = document.querySelector('.map-filter');
 
   const getMapFilter = (element) => {
+
+    // получаем набор данных из geoObjects
     let allPins = ymaps.geoQuery(mapBlock.geoObjects);
+
     if (element === 'all') {
       allPins.each(function (pm) {
         pm.options.set('visible', true);
       });
       return;
     }
+
     const arr = [];
+
+    // проходимся по всем пинам, скрываем что необходимо
     allPins.each(function (pm) {
-      console.log(pm.balloon.isOpen());
       if (pm.options.get('placemarkType') === element) {
         pm.options.set('visible', true);
         arr.push(pm.balloon.isOpen()); // проверка на открытый попап
@@ -22,7 +27,6 @@ const initMapFilter = (mapBlock) => {
         pm.options.set('visible', true);
       }
     });
-    console.log(arr.includes(true));
     if (!arr.includes(true)) {
       mapBlock.balloon.close(); // если есть открытый попап не соответствующий фильтру то закрывает его
     }
