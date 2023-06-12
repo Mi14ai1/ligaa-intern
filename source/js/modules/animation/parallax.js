@@ -14,29 +14,29 @@ const fadeScaleParallax = () => {
   // набрасываем анимацию на каждый блок
   items.forEach((item) => {
     const animateContainer = item.querySelector('[data-parallax="item"]');
-    //начальное значение (перед анимацией)
+    // начальное значение (перед анимацией)
     gsap.set(animateContainer, {opacity: 0, scale: 0.7});
     //сама анимация
     const tl = gsap.to(animateContainer, {opacity: 1, scale: 1});
-    //конфигурация тригера
+    // конфигурация тригера
     ScrollTrigger.create({
-      //отслеживаемый элемент
+      // отслеживаемый элемент
       trigger: item,
-      //блок в котором происходит прокрутка
+      // блок в котором происходит прокрутка
       scroller: pageScroller,
-      //настройка позиции элемента во вьюпорте (когда начинается анимация, когда заканчивается)
+      // настройка позиции элемента во вьюпорте (когда начинается анимация, когда заканчивается)
       start: 'top bottom',
       end: vp767.matches ? 'center center' : 'top center',
-      //если true будет воспроизводится в соответствии с прогрессом прокрутки
+      // если true будет воспроизводится в соответствии с прогрессом прокрутки
       scrub: true,
-      //то какая анимация проиграется
+      // то какая анимация проиграется
       animation: tl,
     });
   });
 };
 
 // функция добавляет анимацию трансформации по вертикали
-//конфигурация аналогична той что описана выше
+// конфигурация аналогична той что описана выше
 const transformYParallax = () => {
   const items = document.querySelectorAll('[data-parallax="transformY"]');
   if (!items.length) {
