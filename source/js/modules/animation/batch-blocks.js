@@ -3,7 +3,7 @@ import {pageScroller} from '../../utils/page-scroller.js';
 
 // этот файл является частью модуля animation.js
 
-// по скроллу на блоках с дата атрибутом data-animate="fade", далее блок, запускается одна из анимаций
+// по скроллу на блоках с дата-атрибутом data-animate="fade", далее блок, запускается одна из анимаций
 ScrollTrigger.batch('[data-animate="fade"]', {
   onEnter: (batch) => gsap.to(batch, { // анимация, когда доскроллили до блока
     autoAlpha: 1, duration: 0.45, stagger: 0.1, // управление прозрачностью
@@ -28,7 +28,7 @@ ScrollTrigger.batch('[data-animate="fade"]', {
 // по скроллу на блоках с дата атрибутом data-animate="fadeIn"
 ScrollTrigger.batch('[data-animate="fadeIn"]', {
   onEnter: (batch) => gsap.to('[data-animate="fadeIn"] [data-animate-item]', { // здесь анимируются не весе блоки из бетча,
-    autoAlpha: 1, y: 0, duration: 0.45, stagger: 0.1,                          // а блоки в бетче соответствующие селектору в первом параметре
+    autoAlpha: 1, y: 0, duration: 0.45, stagger: 0.1, // а блоки в бетче соответствующие селектору в первом параметре
   }),
   start: 'top center',
   scroller: pageScroller,
